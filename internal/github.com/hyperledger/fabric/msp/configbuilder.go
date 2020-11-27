@@ -19,8 +19,10 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/hyperledger/fabric-protos-go/msp"
 	"github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp"
+	"github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/factory"
 	"github.com/pkg/errors"
-	"gopkg.in/yaml.v2"
+	//"gopkg.in/yaml.v2"
+	"github.com/KompiTech/go-toolkit/logging"
 )
 
 // OrganizationalUnitIdentifiersConfiguration is used to represent an OU
@@ -43,10 +45,6 @@ type NodeOUs struct {
 	ClientOUIdentifier *OrganizationalUnitIdentifiersConfiguration `yaml:"ClientOUIdentifier,omitempty"`
 	// PeerOUIdentifier specifies how to recognize peers by OU
 	PeerOUIdentifier *OrganizationalUnitIdentifiersConfiguration `yaml:"PeerOUIdentifier,omitempty"`
-	// AdminOUIdentifier specifies how to recognize admins by OU
-	AdminOUIdentifier *OrganizationalUnitIdentifiersConfiguration `yaml:"AdminOUIdentifier,omitempty"`
-	// OrdererOUIdentifier specifies how to recognize admins by OU
-	OrdererOUIdentifier *OrganizationalUnitIdentifiersConfiguration `yaml:"OrdererOUIdentifier,omitempty"`
 }
 
 // Configuration represents the accessory configuration an MSP can be equipped with.
@@ -63,7 +61,8 @@ type Configuration struct {
 func readFile(file string) ([]byte, error) {
 	fileCont, err := ioutil.ReadFile(file)
 	if err != nil {
-		return nil, errors.Wrapf(err, "could not read file %s", file)
+		err = errors.Wrapf(err, "%v reaading file %v failed", logging.FuncInfo(), file)
+		return nil, err
 	}
 
 	return fileCont, nil
@@ -72,29 +71,30 @@ func readFile(file string) ([]byte, error) {
 func readPemFile(file string) ([]byte, error) {
 	bytes, err := readFile(file)
 	if err != nil {
-		return nil, errors.Wrapf(err, "reading from file %s failed", file)
+		err = errors.Wrapf(err, "%v reading from file %s failed", logging.FuncInfo(), file)
+		return nil, err
 	}
 
 	b, _ := pem.Decode(bytes)
 	if b == nil { // TODO: also check that the type is what we expect (cert vs key..)
-		return nil, errors.Errorf("no pem content for file %s", file)
+		return nil, errors.Errorf("%v no pem content for file %s", logging.FuncInfo(), file)
 	}
 
 	return bytes, nil
 }
 
 func getPemMaterialFromDir(dir string) ([][]byte, error) {
-	mspLogger.Debugf("Reading directory %s", dir)
-
+	logger := logging.GetLogger()
 	_, err := os.Stat(dir)
 	if os.IsNotExist(err) {
+		err = errors.Wrapf(err, "%v directory %v does not exist", logging.FuncInfo(), dir)
 		return nil, err
 	}
 
 	content := make([][]byte, 0)
 	files, err := ioutil.ReadDir(dir)
 	if err != nil {
-		return nil, errors.Wrapf(err, "could not read directory %s", dir)
+		return nil, errors.Wrapf(err, "%v could not read directory %s", logging.FuncInfo(), dir)
 	}
 
 	for _, f := range files {
@@ -102,18 +102,18 @@ func getPemMaterialFromDir(dir string) ([][]byte, error) {
 
 		f, err := os.Stat(fullName)
 		if err != nil {
-			mspLogger.Warningf("Failed to stat %s: %s", fullName, err)
+			err = errors.Wrapf(err, "%v Failed to stat %s", logging.FuncInfo(), fullName)
+			logger.Warn(err.Error())
 			continue
 		}
 		if f.IsDir() {
 			continue
 		}
 
-		mspLogger.Debugf("Inspecting file %s", fullName)
-
 		item, err := readPemFile(fullName)
 		if err != nil {
-			mspLogger.Warningf("Failed reading file %s: %s", fullName, err)
+			err = errors.Wrapf(err, "%v Failed reading file %s", logging.FuncInfo(), fullName)
+			logger.Warn(err.Error())
 			continue
 		}
 
@@ -135,145 +135,100 @@ const (
 	tlsintermediatecerts = "tlsintermediatecerts"
 )
 
-// GetVerifyingMspConfig returns an MSP config given directory, ID and type
-func GetVerifyingMspConfig(dir, ID, mspType string) (*msp.MSPConfig, error) {
+// SetupBCCSPKeystoreConfig ...
+func SetupBCCSPKeystoreConfig(bccspConfig *factory.FactoryOpts, keystoreDir string) *factory.FactoryOpts {
+	if bccspConfig == nil {
+		bccspConfig = factory.GetDefaultOpts()
+	}
+
+	if bccspConfig.ProviderName == "SW" {
+		if bccspConfig.SwOpts == nil {
+			bccspConfig.SwOpts = factory.GetDefaultOpts().SwOpts
+		}
+
+		// Only override the KeyStorePath if it was left empty
+		if bccspConfig.SwOpts.FileKeystore == nil ||
+			bccspConfig.SwOpts.FileKeystore.KeyStorePath == "" {
+			bccspConfig.SwOpts.Ephemeral = false
+			bccspConfig.SwOpts.FileKeystore = &factory.FileKeystoreOpts{KeyStorePath: keystoreDir}
+		}
+	}
+
+	return bccspConfig
+}
+
+// GetLocalMspConfigWithType returns a local MSP
+// configuration for the MSP in the specified
+// directory, with the specified ID and type
+func GetLocalMspConfigWithType(dir string, bccspConfig *factory.FactoryOpts, ID, mspType string) (*msp.MSPConfig, error) {
 	switch mspType {
 	case ProviderTypeToString(FABRIC):
-		return getMspConfig(dir, ID, nil)
+		return GetLocalMspConfig(dir, bccspConfig, ID)
+	case ProviderTypeToString(IDEMIX):
+		return GetIdemixMspConfig(dir, ID)
 	default:
-		return nil, errors.Errorf("unknown MSP type '%s'", mspType)
+		return nil, errors.Errorf("%v unknown MSP type '%s'", logging.FuncInfo(), mspType)
 	}
 }
 
-func getMspConfig(dir string, ID string, sigid *msp.SigningIdentityInfo) (*msp.MSPConfig, error) {
-	cacertDir := filepath.Join(dir, cacerts)
-	admincertDir := filepath.Join(dir, admincerts)
-	intermediatecertsDir := filepath.Join(dir, intermediatecerts)
-	crlsDir := filepath.Join(dir, crlsfolder)
-	configFile := filepath.Join(dir, configfilename)
-	tlscacertDir := filepath.Join(dir, tlscacerts)
-	tlsintermediatecertsDir := filepath.Join(dir, tlsintermediatecerts)
+// GetLocalMspConfig ...
+func GetLocalMspConfig(dir string, bccspConfig *factory.FactoryOpts, ID string) (*msp.MSPConfig, error) {
+	signcertDir := filepath.Join(dir, signcerts)
+	keystoreDir := filepath.Join(dir, keystore)
+	bccspConfig = SetupBCCSPKeystoreConfig(bccspConfig, keystoreDir)
 
-	cacerts, err := getPemMaterialFromDir(cacertDir)
-	if err != nil || len(cacerts) == 0 {
-		return nil, errors.WithMessagef(err, "could not load a valid ca certificate from directory %s", cacertDir)
+	err := factory.InitFactories(bccspConfig)
+	if err != nil {
+		err = errors.Wrapf(err, "%v could not initialize BCCSP Factories", logging.FuncInfo())
+		return nil, err
 	}
 
-	admincert, err := getPemMaterialFromDir(admincertDir)
-	if err != nil && !os.IsNotExist(err) {
-		return nil, errors.WithMessagef(err, "could not load a valid admin certificate from directory %s", admincertDir)
+	signcert, err := getPemMaterialFromDir(signcertDir)
+	if err != nil || len(signcert) == 0 {
+		err = errors.Wrapf(err, "%v could not load a valid signer certificate from directory %s", logging.FuncInfo(), signcertDir)
+		return nil, err
 	}
 
-	intermediatecerts, err := getPemMaterialFromDir(intermediatecertsDir)
-	if os.IsNotExist(err) {
-		mspLogger.Debugf("Intermediate certs folder not found at [%s]. Skipping. [%s]", intermediatecertsDir, err)
-	} else if err != nil {
-		return nil, errors.WithMessagef(err, "failed loading intermediate ca certs at [%s]", intermediatecertsDir)
-	}
+	/* FIXME: for now we're making the following assumptions
+	1) there is exactly one signing cert
+	2) BCCSP's KeyStore has the private key that matches SKI of
+	   signing cert
+	*/
 
-	tlsCACerts, err := getPemMaterialFromDir(tlscacertDir)
+	sigid := &msp.SigningIdentityInfo{PublicSigner: signcert[0], PrivateSigner: nil}
+
+	return getMspConfig(dir, ID, sigid, &fabric.Certs{})
+}
+
+// GetVerifyingMspConfig returns an MSP config given directory, ID and type
+func GetVerifyingMspConfig(dir, ID, mspType string, certs *fabric.Certs) (*msp.MSPConfig, error) {
+	return getMspConfig(dir, ID, nil, certs)
+}
+
+func getMspConfig(dir string, ID string, sigid *msp.SigningIdentityInfo, certs *fabric.Certs) (*msp.MSPConfig, error) {
+	caContent := make([][]byte, 0)
+	tlsCaContent := make([][]byte, 0)
+	for _, cert := range certs.CaCerts {
+		caContent = append(caContent, []byte(cert.GetContent()))
+		tlsCaContent = append(tlsCaContent, []byte(cert.GetContent()))
+	}
+	cacerts := caContent
+	adminContent := make([][]byte, 0)
+	for _, cert := range certs.AdminCerts {
+		adminContent = append(adminContent, []byte(cert.GetContent()))
+	}
+	admincert := adminContent
+
+	intermediatecerts := [][]byte{}
+	tlsCACerts := tlsCaContent
 	tlsIntermediateCerts := [][]byte{}
-	if os.IsNotExist(err) {
-		mspLogger.Debugf("TLS CA certs folder not found at [%s]. Skipping and ignoring TLS intermediate CA folder. [%s]", tlsintermediatecertsDir, err)
-	} else if err != nil {
-		return nil, errors.WithMessagef(err, "failed loading TLS ca certs at [%s]", tlsintermediatecertsDir)
-	} else if len(tlsCACerts) != 0 {
-		tlsIntermediateCerts, err = getPemMaterialFromDir(tlsintermediatecertsDir)
-		if os.IsNotExist(err) {
-			mspLogger.Debugf("TLS intermediate certs folder not found at [%s]. Skipping. [%s]", tlsintermediatecertsDir, err)
-		} else if err != nil {
-			return nil, errors.WithMessagef(err, "failed loading TLS intermediate ca certs at [%s]", tlsintermediatecertsDir)
-		}
-	} else {
-		mspLogger.Debugf("TLS CA certs folder at [%s] is empty. Skipping.", tlsintermediatecertsDir)
-	}
-
-	crls, err := getPemMaterialFromDir(crlsDir)
-	if os.IsNotExist(err) {
-		mspLogger.Debugf("crls folder not found at [%s]. Skipping. [%s]", crlsDir, err)
-	} else if err != nil {
-		return nil, errors.WithMessagef(err, "failed loading crls at [%s]", crlsDir)
-	}
+	crls := [][]byte{}
 
 	// Load configuration file
 	// if the configuration file is there then load it
 	// otherwise skip it
 	var ouis []*msp.FabricOUIdentifier
 	var nodeOUs *msp.FabricNodeOUs
-	_, err = os.Stat(configFile)
-	if err == nil {
-		// load the file, if there is a failure in loading it then
-		// return an error
-		raw, err := ioutil.ReadFile(configFile)
-		if err != nil {
-			return nil, errors.Wrapf(err, "failed loading configuration file at [%s]", configFile)
-		}
-
-		configuration := Configuration{}
-		err = yaml.Unmarshal(raw, &configuration)
-		if err != nil {
-			return nil, errors.Wrapf(err, "failed unmarshalling configuration file at [%s]", configFile)
-		}
-
-		// Prepare OrganizationalUnitIdentifiers
-		if len(configuration.OrganizationalUnitIdentifiers) > 0 {
-			for _, ouID := range configuration.OrganizationalUnitIdentifiers {
-				f := filepath.Join(dir, ouID.Certificate)
-				raw, err = readFile(f)
-				if err != nil {
-					return nil, errors.Wrapf(err, "failed loading OrganizationalUnit certificate at [%s]", f)
-				}
-
-				oui := &msp.FabricOUIdentifier{
-					Certificate:                  raw,
-					OrganizationalUnitIdentifier: ouID.OrganizationalUnitIdentifier,
-				}
-				ouis = append(ouis, oui)
-			}
-		}
-
-		// Prepare NodeOUs
-		if configuration.NodeOUs != nil && configuration.NodeOUs.Enable {
-			mspLogger.Debug("Loading NodeOUs")
-			nodeOUs = &msp.FabricNodeOUs{
-				Enable: true,
-			}
-			if configuration.NodeOUs.ClientOUIdentifier != nil && len(configuration.NodeOUs.ClientOUIdentifier.OrganizationalUnitIdentifier) != 0 {
-				nodeOUs.ClientOuIdentifier = &msp.FabricOUIdentifier{OrganizationalUnitIdentifier: configuration.NodeOUs.ClientOUIdentifier.OrganizationalUnitIdentifier}
-			}
-			if configuration.NodeOUs.PeerOUIdentifier != nil && len(configuration.NodeOUs.PeerOUIdentifier.OrganizationalUnitIdentifier) != 0 {
-				nodeOUs.PeerOuIdentifier = &msp.FabricOUIdentifier{OrganizationalUnitIdentifier: configuration.NodeOUs.PeerOUIdentifier.OrganizationalUnitIdentifier}
-			}
-			if configuration.NodeOUs.AdminOUIdentifier != nil && len(configuration.NodeOUs.AdminOUIdentifier.OrganizationalUnitIdentifier) != 0 {
-				nodeOUs.AdminOuIdentifier = &msp.FabricOUIdentifier{OrganizationalUnitIdentifier: configuration.NodeOUs.AdminOUIdentifier.OrganizationalUnitIdentifier}
-			}
-			if configuration.NodeOUs.OrdererOUIdentifier != nil && len(configuration.NodeOUs.OrdererOUIdentifier.OrganizationalUnitIdentifier) != 0 {
-				nodeOUs.OrdererOuIdentifier = &msp.FabricOUIdentifier{OrganizationalUnitIdentifier: configuration.NodeOUs.OrdererOUIdentifier.OrganizationalUnitIdentifier}
-			}
-
-			// Read certificates, if defined
-
-			// ClientOU
-			if nodeOUs.ClientOuIdentifier != nil {
-				nodeOUs.ClientOuIdentifier.Certificate = loadCertificateAt(dir, configuration.NodeOUs.ClientOUIdentifier.Certificate, "ClientOU")
-			}
-			// PeerOU
-			if nodeOUs.PeerOuIdentifier != nil {
-				nodeOUs.PeerOuIdentifier.Certificate = loadCertificateAt(dir, configuration.NodeOUs.PeerOUIdentifier.Certificate, "PeerOU")
-			}
-			// AdminOU
-			if nodeOUs.AdminOuIdentifier != nil {
-				nodeOUs.AdminOuIdentifier.Certificate = loadCertificateAt(dir, configuration.NodeOUs.AdminOUIdentifier.Certificate, "AdminOU")
-			}
-			// OrdererOU
-			if nodeOUs.OrdererOuIdentifier != nil {
-				nodeOUs.OrdererOuIdentifier.Certificate = loadCertificateAt(dir, configuration.NodeOUs.OrdererOUIdentifier.Certificate, "OrdererOU")
-			}
-		}
-	} else {
-		mspLogger.Debugf("MSP configuration file not found at [%s]: [%s]", configFile, err)
-	}
-
 	// Set FabricCryptoConfig
 	cryptoConfig := &msp.FabricCryptoConfig{
 		SignatureHashFamily:            bccsp.SHA2,
@@ -302,24 +257,6 @@ func getMspConfig(dir string, ID string, sigid *msp.SigningIdentityInfo) (*msp.M
 	return mspconf, nil
 }
 
-func loadCertificateAt(dir, certificatePath string, ouType string) []byte {
-
-	if certificatePath == "" {
-		mspLogger.Debugf("Specific certificate for %s is not configured", ouType)
-		return nil
-	}
-
-	f := filepath.Join(dir, certificatePath)
-	raw, err := readFile(f)
-	if err != nil {
-		mspLogger.Warnf("Failed loading %s certificate at [%s]: [%s]", ouType, f, err)
-	} else {
-		return raw
-	}
-
-	return nil
-}
-
 const (
 	IdemixConfigDirMsp                  = "msp"
 	IdemixConfigDirUser                 = "user"
@@ -327,3 +264,43 @@ const (
 	IdemixConfigFileRevocationPublicKey = "RevocationPublicKey"
 	IdemixConfigFileSigner              = "SignerConfig"
 )
+
+// GetIdemixMspConfig returns the configuration for the Idemix MSP
+func GetIdemixMspConfig(dir string, ID string) (*msp.MSPConfig, error) {
+	ipkBytes, err := readFile(filepath.Join(dir, IdemixConfigDirMsp, IdemixConfigFileIssuerPublicKey))
+	if err != nil {
+		err = errors.Wrapf(err, "%v reading issuer public key file failed", logging.FuncInfo())
+		return nil, err
+	}
+
+	revocationPkBytes, err := readFile(filepath.Join(dir, IdemixConfigDirMsp, IdemixConfigFileRevocationPublicKey))
+	if err != nil {
+		err = errors.Wrapf(err, "%v reading revocation public key file failed", logging.FuncInfo())
+		return nil, err
+	}
+
+	idemixConfig := &msp.IdemixMSPConfig{
+		Name:         ID,
+		Ipk:          ipkBytes,
+		RevocationPk: revocationPkBytes,
+	}
+
+	signerBytes, err := readFile(filepath.Join(dir, IdemixConfigDirUser, IdemixConfigFileSigner))
+	if err == nil {
+		signerConfig := &msp.IdemixMSPSignerConfig{}
+		err = proto.Unmarshal(signerBytes, signerConfig)
+		if err != nil {
+			err = errors.Wrapf(err, "%v unmarshaling signer config failed", logging.FuncInfo())
+			return nil, err
+		}
+		idemixConfig.Signer = signerConfig
+	}
+
+	confBytes, err := proto.Marshal(idemixConfig)
+	if err != nil {
+		err = errors.Wrapf(err, "%v marshaling idemix config failed", logging.FuncInfo())
+		return nil, err
+	}
+
+	return &msp.MSPConfig{Config: confBytes, Type: int32(IDEMIX)}, nil
+}
