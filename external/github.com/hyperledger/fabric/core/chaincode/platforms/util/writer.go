@@ -22,8 +22,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkinternal/ccmetadata"
-	flogging "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkpatch/logbridge"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkinternal/ccmetadata"
+	flogging "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkpatch/logbridge"
 	"github.com/pkg/errors"
 )
 

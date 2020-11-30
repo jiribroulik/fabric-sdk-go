@@ -23,7 +23,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/hyperledger/fabric-protos-go/common"
 	"github.com/hyperledger/fabric-protos-go/msp"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkpatch/keyutil"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkpatch/keyutil"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

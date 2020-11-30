@@ -27,7 +27,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp"
 )
 
 type ecdsaPublicKeyKeyDeriver struct{}

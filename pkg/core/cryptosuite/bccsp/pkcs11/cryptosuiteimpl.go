@@ -7,9 +7,9 @@ SPDX-License-Identifier: Apache-2.0
 package pkcs11
 
 import (
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp"
-	bccspPkcs11 "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/factory/pkcs11"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/pkcs11"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp"
+	bccspPkcs11 "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp/factory/pkcs11"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp/pkcs11"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/logging"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/core"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/core/cryptosuite/bccsp/wrapper"

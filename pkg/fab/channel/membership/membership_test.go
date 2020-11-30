@@ -30,7 +30,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkpatch/keyutil"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkpatch/keyutil"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/core/config/comm/tls"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/fab/mocks"
 	"github.com/jiribroulik/fabric-sdk-go/test/metadata"

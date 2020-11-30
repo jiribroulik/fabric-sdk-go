@@ -12,7 +12,7 @@ package capabilities
 
 import (
 	cb "github.com/hyperledger/fabric-protos-go/common"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/msp"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/msp"
 )
 
 const (

@@ -11,7 +11,7 @@ Please review third_party pinning scripts and patches for more details.
 package channelconfig
 
 import (
-	flogging "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkpatch/logbridge"
+	flogging "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkpatch/logbridge"
 )
 
 var logger = flogging.MustGetLogger("common.channelconfig")

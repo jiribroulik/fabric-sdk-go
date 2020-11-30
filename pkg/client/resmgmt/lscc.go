@@ -14,7 +14,7 @@ import (
 
 	"github.com/hyperledger/fabric-protos-go/common"
 	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/protoutil"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/protoutil"
 )
 
 const (

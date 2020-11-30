@@ -27,9 +27,9 @@ import (
 
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/core"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric-ca/sdkinternal/pkg/util"
-	factory "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric-ca/sdkpatch/cryptosuitebridge"
-	log "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric-ca/sdkpatch/logbridge"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric-ca/sdkinternal/pkg/util"
+	factory "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric-ca/sdkpatch/cryptosuitebridge"
+	log "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric-ca/sdkpatch/logbridge"
 	"github.com/pkg/errors"
 )
 

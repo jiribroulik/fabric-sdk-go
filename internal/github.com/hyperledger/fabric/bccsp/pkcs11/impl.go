@@ -15,9 +15,9 @@ import (
 	"crypto/x509"
 	"os"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/sw"
-	flogging "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkpatch/logbridge"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp/sw"
+	flogging "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkpatch/logbridge"
 	sdkp11 "github.com/jiribroulik/fabric-sdk-go/pkg/core/cryptosuite/common/pkcs11"
 	"github.com/pkg/errors"
 )

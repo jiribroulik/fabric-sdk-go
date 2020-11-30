@@ -28,7 +28,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	fabdiscovery "github.com/hyperledger/fabric-protos-go/discovery"
-	discclient "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/discovery/client"
+	discclient "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/discovery/client"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/context"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/fabsdk"
 )

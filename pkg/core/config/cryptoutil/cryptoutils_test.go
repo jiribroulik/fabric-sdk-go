@@ -9,7 +9,7 @@ package cryptoutil
 import (
 	"testing"
 
-	fabricCaUtil "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric-ca/sdkinternal/pkg/util"
+	fabricCaUtil "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric-ca/sdkinternal/pkg/util"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/core/cryptosuite"
 )
 

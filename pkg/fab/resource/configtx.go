@@ -13,13 +13,13 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/common/channelconfig"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/protoutil"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkinternal/configtxgen/encoder"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkinternal/configtxlator/update"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/common/channelconfig"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/protoutil"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkinternal/configtxgen/encoder"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkinternal/configtxlator/update"
 	"github.com/pkg/errors"
 
-	localconfig "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkinternal/configtxgen/genesisconfig"
+	localconfig "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkinternal/configtxgen/genesisconfig"
 
 	"github.com/hyperledger/fabric-config/protolator"
 	"github.com/hyperledger/fabric-protos-go/common"

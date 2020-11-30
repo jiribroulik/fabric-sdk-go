@@ -22,7 +22,7 @@ import (
 	"github.com/hyperledger/fabric-protos-go/ledger/rwset/kvrwset"
 	"github.com/hyperledger/fabric-protos-go/msp"
 	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/utils"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp/utils"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"
 	discmocks "github.com/jiribroulik/fabric-sdk-go/pkg/fab/discovery/mocks"
 	eventmocks "github.com/jiribroulik/fabric-sdk-go/pkg/fab/events/mocks"

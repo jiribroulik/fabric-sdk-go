@@ -29,7 +29,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/hyperledger/fabric-protos-go/common"
 	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/common/policydsl"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/common/policydsl"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/errors/status"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/context"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/core"

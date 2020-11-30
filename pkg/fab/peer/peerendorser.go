@@ -21,7 +21,7 @@ import (
 
 	"github.com/hyperledger/fabric-protos-go/common"
 	pb "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/protoutil"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/protoutil"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/client/common/verifier"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/errors/status"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"

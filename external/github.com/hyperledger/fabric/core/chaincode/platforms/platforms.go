@@ -14,9 +14,9 @@ import (
 	"archive/tar"
 	"fmt"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/core/chaincode/platforms/golang"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/core/chaincode/platforms/java"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/core/chaincode/platforms/node"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/core/chaincode/platforms/golang"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/core/chaincode/platforms/java"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/core/chaincode/platforms/node"
 )
 
 // SupportedPlatforms is the canonical list of platforms Fabric supports

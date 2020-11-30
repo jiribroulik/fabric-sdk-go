@@ -12,7 +12,7 @@ package capabilities
 
 import (
 	cb "github.com/hyperledger/fabric-protos-go/common"
-	flogging "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkpatch/logbridge"
+	flogging "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkpatch/logbridge"
 	"github.com/pkg/errors"
 )
 

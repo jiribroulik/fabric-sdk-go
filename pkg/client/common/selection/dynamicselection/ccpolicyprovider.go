@@ -16,7 +16,7 @@ import (
 	"github.com/pkg/errors"
 
 	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/core/common/ccprovider"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/core/common/ccprovider"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/client/channel"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/errors/status"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/logging"

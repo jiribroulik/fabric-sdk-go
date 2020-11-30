@@ -11,7 +11,7 @@ import (
 	"encoding/hex"
 	"hash"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/common/crypto"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/common/crypto"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/core"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/msp"

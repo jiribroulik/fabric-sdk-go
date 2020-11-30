@@ -12,7 +12,7 @@ import (
 	"sync"
 
 	"github.com/hyperledger/fabric-protos-go/discovery"
-	discclient "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/discovery/client"
+	discclient "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/discovery/client"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/logging"
 	fabcontext "github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/context"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"

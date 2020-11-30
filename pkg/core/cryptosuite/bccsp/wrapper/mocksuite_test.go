@@ -9,8 +9,8 @@ package wrapper
 import (
 	"fmt"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp"
-	bccspSw "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/factory/sw"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp"
+	bccspSw "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp/factory/sw"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/core"
 )
 

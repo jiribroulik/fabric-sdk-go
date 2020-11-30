@@ -23,11 +23,11 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/hyperledger/fabric-config/protolator"
 	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkpatch/keyutil"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkpatch/keyutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp/utils"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp/utils"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/client/channel"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/client/common/discovery/dynamicdiscovery"
 	mspclient "github.com/jiribroulik/fabric-sdk-go/pkg/client/msp"

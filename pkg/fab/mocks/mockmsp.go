@@ -8,7 +8,7 @@ package mocks
 
 import (
 	msp_protos "github.com/hyperledger/fabric-protos-go/msp"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/msp"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/msp"
 )
 
 // MockMSP implements mock msp

@@ -11,8 +11,8 @@ import (
 	"github.com/pkg/errors"
 
 	"github.com/hyperledger/fabric-protos-go/common"
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/common/crypto"
-	fcutils "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/common/util"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/common/crypto"
+	fcutils "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/common/util"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/context"
 )
 

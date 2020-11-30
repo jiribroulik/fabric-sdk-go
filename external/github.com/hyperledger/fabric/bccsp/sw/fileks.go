@@ -23,7 +23,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp"
 )
 
 // NewFileBasedKeyStore instantiated a file-based key store at a given position.

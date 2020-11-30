@@ -35,8 +35,8 @@ import (
 
 	"github.com/cloudflare/cfssl/csr"
 	"github.com/cloudflare/cfssl/helpers"
-	factory "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric-ca/sdkpatch/cryptosuitebridge"
-	log "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric-ca/sdkpatch/logbridge"
+	factory "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric-ca/sdkpatch/cryptosuitebridge"
+	log "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric-ca/sdkpatch/logbridge"
 	"github.com/pkg/errors"
 )
 

@@ -32,7 +32,7 @@ import (
 	pb "github.com/hyperledger/fabric-protos-go/peer"
 	"github.com/pkg/errors"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkinternal/configtxlator/update"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkinternal/configtxlator/update"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/client/common/verifier"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/errors/multi"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/errors/retry"

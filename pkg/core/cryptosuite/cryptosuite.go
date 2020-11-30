@@ -13,7 +13,7 @@ import (
 
 	"sync"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/bccsp"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/bccsp"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/logging"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/core"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/core/cryptosuite/bccsp/sw"

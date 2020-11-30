@@ -11,7 +11,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/sdkpatch/cachebridge"
+	"github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/sdkpatch/cachebridge"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/logging"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/util/concurrent/lazycache"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/util/concurrent/lazyref"

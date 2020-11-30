@@ -12,8 +12,8 @@ import (
 
 	"github.com/hyperledger/fabric-protos-go/discovery"
 	"github.com/hyperledger/fabric-protos-go/gossip"
-	discclient "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/discovery/client"
-	gprotoext "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/gossip/protoext"
+	discclient "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/discovery/client"
+	gprotoext "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/gossip/protoext"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/fab/discovery/mocks"
 	"github.com/pkg/errors"

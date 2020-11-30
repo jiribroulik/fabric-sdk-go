@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	discclient "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/discovery/client"
+	discclient "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/discovery/client"
 	coptions "github.com/jiribroulik/fabric-sdk-go/pkg/common/options"
 	contextAPI "github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/context"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"

@@ -13,7 +13,7 @@ import (
 	"github.com/jiribroulik/fabric-sdk-go/pkg/client/common/selection/sorter/balancedsorter"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/client/common/selection/sorter/blockheightsorter"
 
-	discclient "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric/discovery/client"
+	discclient "github.com/jiribroulik/fabric-sdk-go/external/github.com/hyperledger/fabric/discovery/client"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/client/common/selection/balancer"
 	"github.com/jiribroulik/fabric-sdk-go/pkg/client/common/selection/options"
 	contextAPI "github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/context"
