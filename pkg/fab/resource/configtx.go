@@ -11,7 +11,7 @@ import (
 	"time"
     "strings"
 	"github.com/golang/protobuf/proto"
-	"github.com/KompiTech/manblock-fabric-orchestrator/pkg/fabric"
+	fabric "github.com/KompiTech/manblock-fabric-orchestrator/pkg/fabric/model"
 	"github.com/KompiTech/go-toolkit/logging"
 	ppb "github.com/KompiTech/grpc-apis/manblock-common"
 	"go.uber.org/zap"
