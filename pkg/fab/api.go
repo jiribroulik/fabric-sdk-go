@@ -9,8 +9,8 @@ package fab
 import (
 	"time"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/errors/retry"
-	"github.com/hyperledger/fabric-sdk-go/pkg/core/config/endpoint"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/errors/retry"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/core/config/endpoint"
 )
 
 // ClientConfig provides the definition of the client configuration

@@ -13,22 +13,22 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/errors/multi"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/errors/multi"
 
 	pb "github.com/hyperledger/fabric-protos-go/peer"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/client/channel"
-	"github.com/hyperledger/fabric-sdk-go/pkg/client/channel/invoke"
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/errors/retry"
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/errors/status"
-	"github.com/hyperledger/fabric-sdk-go/pkg/core/config"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/client/channel"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/client/channel/invoke"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/errors/retry"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/errors/status"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/core/config"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
-	"github.com/hyperledger/fabric-sdk-go/pkg/fabsdk"
-	"github.com/hyperledger/fabric-sdk-go/test/integration"
-	"github.com/hyperledger/fabric-sdk-go/test/metadata"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/fabsdk"
+	"github.com/jiribroulik/fabric-sdk-go/test/integration"
+	"github.com/jiribroulik/fabric-sdk-go/test/metadata"
 )
 
 func TestChannelClient(t *testing.T) {

@@ -18,10 +18,10 @@ import (
 
 	"reflect"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/msp"
-	"github.com/hyperledger/fabric-sdk-go/pkg/core/mocks"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/core"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/msp"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/core/mocks"
 	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"

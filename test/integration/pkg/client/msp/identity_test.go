@@ -13,11 +13,11 @@ import (
 
 	"fmt"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/client/msp"
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
-	"github.com/hyperledger/fabric-sdk-go/pkg/fabsdk"
-	"github.com/hyperledger/fabric-sdk-go/pkg/gateway"
-	"github.com/hyperledger/fabric-sdk-go/test/integration"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/client/msp"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/core"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/fabsdk"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/gateway"
+	"github.com/jiribroulik/fabric-sdk-go/test/integration"
 	"github.com/stretchr/testify/assert"
 )
 

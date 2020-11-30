@@ -11,10 +11,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/context"
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
-	"github.com/hyperledger/fabric-sdk-go/pkg/fab/events/api"
-	servicemocks "github.com/hyperledger/fabric-sdk-go/pkg/fab/events/service/mocks"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/context"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/fab/events/api"
+	servicemocks "github.com/jiribroulik/fabric-sdk-go/pkg/fab/events/service/mocks"
 	"github.com/pkg/errors"
 )
 

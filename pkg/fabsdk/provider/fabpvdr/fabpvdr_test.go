@@ -11,19 +11,19 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/msp"
-	"github.com/hyperledger/fabric-sdk-go/pkg/core/config"
-	"github.com/hyperledger/fabric-sdk-go/pkg/core/cryptosuite/bccsp/sw"
-	coreMocks "github.com/hyperledger/fabric-sdk-go/pkg/core/mocks"
-	"github.com/hyperledger/fabric-sdk-go/test/metadata"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/msp"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/core/config"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/core/cryptosuite/bccsp/sw"
+	coreMocks "github.com/jiribroulik/fabric-sdk-go/pkg/core/mocks"
+	"github.com/jiribroulik/fabric-sdk-go/test/metadata"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/core/cryptosuite"
-	fabImpl "github.com/hyperledger/fabric-sdk-go/pkg/fab"
-	"github.com/hyperledger/fabric-sdk-go/pkg/fab/mocks"
-	peerImpl "github.com/hyperledger/fabric-sdk-go/pkg/fab/peer"
-	mspImpl "github.com/hyperledger/fabric-sdk-go/pkg/msp"
-	mspmocks "github.com/hyperledger/fabric-sdk-go/pkg/msp/test/mockmsp"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/core/cryptosuite"
+	fabImpl "github.com/jiribroulik/fabric-sdk-go/pkg/fab"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/fab/mocks"
+	peerImpl "github.com/jiribroulik/fabric-sdk-go/pkg/fab/peer"
+	mspImpl "github.com/jiribroulik/fabric-sdk-go/pkg/msp"
+	mspmocks "github.com/jiribroulik/fabric-sdk-go/pkg/msp/test/mockmsp"
 )
 
 func TestCreateInfraProvider(t *testing.T) {

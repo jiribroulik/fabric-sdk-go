@@ -9,14 +9,14 @@ package dispatcher
 import (
 	"time"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/options"
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/context"
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
-	"github.com/hyperledger/fabric-sdk-go/pkg/fab/events/client/lbp"
-	"github.com/hyperledger/fabric-sdk-go/pkg/fab/events/client/peerresolver"
-	"github.com/hyperledger/fabric-sdk-go/pkg/fab/events/client/peerresolver/balanced"
-	"github.com/hyperledger/fabric-sdk-go/pkg/fab/events/client/peerresolver/minblockheight"
-	"github.com/hyperledger/fabric-sdk-go/pkg/fab/events/client/peerresolver/preferorg"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/options"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/context"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/fab/events/client/lbp"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/fab/events/client/peerresolver"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/fab/events/client/peerresolver/balanced"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/fab/events/client/peerresolver/minblockheight"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/fab/events/client/peerresolver/preferorg"
 )
 
 const (

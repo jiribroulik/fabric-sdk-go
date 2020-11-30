@@ -9,10 +9,10 @@ package blockheightsorter
 import (
 	"sort"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/client/common/selection/options"
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/logging"
-	coptions "github.com/hyperledger/fabric-sdk-go/pkg/common/options"
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/client/common/selection/options"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/logging"
+	coptions "github.com/jiribroulik/fabric-sdk-go/pkg/common/options"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"
 )
 
 var logger = logging.NewLogger("fabsdk/client")

@@ -9,14 +9,14 @@ package pkcs11
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/fabsdk"
-	"github.com/hyperledger/fabric-sdk-go/test/integration"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/fabsdk"
+	"github.com/jiribroulik/fabric-sdk-go/test/integration"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
-	"github.com/hyperledger/fabric-sdk-go/pkg/core/config"
-	cryptosuite "github.com/hyperledger/fabric-sdk-go/pkg/core/cryptosuite/bccsp/pkcs11"
-	"github.com/hyperledger/fabric-sdk-go/pkg/fabsdk/factory/defcore"
-	"github.com/hyperledger/fabric-sdk-go/test/integration/e2e"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/core"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/core/config"
+	cryptosuite "github.com/jiribroulik/fabric-sdk-go/pkg/core/cryptosuite/bccsp/pkcs11"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/fabsdk/factory/defcore"
+	"github.com/jiribroulik/fabric-sdk-go/test/integration/e2e"
 )
 
 const (

@@ -9,7 +9,7 @@ package comm
 import (
 	"strings"
 
-	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
+	"github.com/jiribroulik/fabric-sdk-go/pkg/common/providers/fab"
 	"github.com/pkg/errors"
 )
 

@@ -1,12 +1,12 @@
 # Hyperledger Fabric Client SDK for Go
 
-[![Release](https://img.shields.io/github/release/hyperledger/fabric-sdk-go.svg?style=flat-square)](https://github.com/hyperledger/fabric-sdk-go/releases/latest)
+[![Release](https://img.shields.io/github/release/hyperledger/fabric-sdk-go.svg?style=flat-square)](https://github.com/jiribroulik/fabric-sdk-go/releases/latest)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://raw.githubusercontent.com/hyperledger/fabric-sdk-go/master/LICENSE)
-[![GoDoc](https://godoc.org/github.com/hyperledger/fabric-sdk-go?status.svg)](https://godoc.org/github.com/hyperledger/fabric-sdk-go)
+[![GoDoc](https://godoc.org/github.com/jiribroulik/fabric-sdk-go?status.svg)](https://godoc.org/github.com/jiribroulik/fabric-sdk-go)
 
 [![Build Status](https://dev.azure.com/hyperledger/fabric-sdk-go/_apis/build/status/hyperledger.fabric-sdk-go?branchName=master)](https://dev.azure.com/hyperledger/fabric-sdk-go/_build/latest?definitionId=19&branchName=master)
 [![codecov](https://codecov.io/gh/hyperledger/fabric-sdk-go/branch/master/graph/badge.svg)](https://codecov.io/gh/hyperledger/fabric-sdk-go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/hyperledger/fabric-sdk-go)](https://goreportcard.com/report/github.com/hyperledger/fabric-sdk-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jiribroulik/fabric-sdk-go)](https://goreportcard.com/report/github.com/jiribroulik/fabric-sdk-go)
 
 This SDK enables Go developers to build solutions that interact with [Hyperledger Fabric](http://hyperledger-fabric.readthedocs.io/en/latest/).
 
@@ -15,14 +15,14 @@ This SDK enables Go developers to build solutions that interact with [Hyperledge
 Obtain the client SDK packages for Fabric and Fabric CA.
 
 ```bash
-go get github.com/hyperledger/fabric-sdk-go
+go get github.com/jiribroulik/fabric-sdk-go
 ```
 
 You're good to go, happy coding! Check out the examples for usage demonstrations.
 
 ### Documentation
 
-SDK documentation can be viewed at [GoDoc](https://godoc.org/github.com/hyperledger/fabric-sdk-go).
+SDK documentation can be viewed at [GoDoc](https://godoc.org/github.com/jiribroulik/fabric-sdk-go).
 
 The packages intended for end developer usage are within the pkg/client folder along with the main SDK package (pkg/fabsdk).
 
@@ -66,7 +66,7 @@ When the 'prev' code level is updated, the last tested fabric-sdk-go commit or t
 Obtain the client SDK packages for Fabric and Fabric CA.
 
 ```bash
-git clone https://github.com/hyperledger/fabric-sdk-go.git
+git clone https://github.com/jiribroulik/fabric-sdk-go.git
 ```
 
 ```bash
