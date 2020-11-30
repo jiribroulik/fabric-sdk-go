@@ -470,7 +470,7 @@ func hasLoggerFnPrefix(pkgPath string, fnName string) bool {
 		modlogFnPrefix = "modlog.(*Log)."
 		loggingPath    = "github.com/hyperledger/fabric-sdk-go/pkg/common/"
 		loggingPkg     = "logging"
-		logBridgePath  = "github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric-ca/sdkpatch/logbridge"
+		logBridgePath  = "github.com/jiribroulik/fabric-sdk-go/internal/github.com/hyperledger/fabric-ca/sdkpatch/logbridge"
 		logBridgePkg   = "logbridge"
 	)
 
